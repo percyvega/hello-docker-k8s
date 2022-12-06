@@ -1,0 +1,11 @@
+mvn -Dmaven.repo.local=./repository clean package
+docker image build -t percyvega/hello .
+kubectl create -f k8s.yml
+
+# curl http://localhost:8080/hello
+
+kubectl delete -f k8s.yml
+docker image rm -f percyvega/hello:latest
+
+# kubectl get deployments,pods,services
+# kubectl delete deployment.apps/hello service/hello
